@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143f727fca8812949877a5342829c082, type: 3}
+  m_Name: English (Main)
+  m_EditorClassIdentifier: 
+  keyLanguage: 10
+  textsToTranslate:
+  - keyText: continue
+    translatedText: Continue
+  - keyText: loading
+    translatedText: Loading...
+  - keyText: exit
+    translatedText: Exit
+  - keyText: shop
+    translatedText: Bullet Shop
+  - keyText: config
+    translatedText: Settings
+  - keyText: credits
+    translatedText: Credits
+  - keyText: madeby
+    translatedText: "Made by Jo\xE3o Milone"
+  - keyText: play
+    translatedText: Play
+  - keyText: buy
+    translatedText: Buy
+  - keyText: restart
+    translatedText: Restart
+  - keyText: back
+    translatedText: Back
+  - keyText: menu
+    translatedText: Menu
+  - keyText: paused
+    translatedText: Paused
+  - keyText: won
+    translatedText: won!
+  - keyText: equipped
+    translatedText: Equipped!
+  - keyText: maxbounce
+    translatedText: 'Max Bounces:'
+  - keyText: damage
+    translatedText: 'Damage:'
+  - keyText: speed
+    translatedText: 'Speed:'
+  - keyText: price
+    translatedText: 'Price:'
+  - keyText: audio
+    translatedText: 'Audio:'
+  - keyText: fx
+    translatedText: 'Fx:'
+  - keyText: music
+    translatedText: 'Music:'
+  - keyText: language
+    translatedText: 'Language:'
+  - keyText: resolution
+    translatedText: 'Resolution:'
+  - keyText: draw
+    translatedText: Draw!
+  - keyText: playagain
+    translatedText: Play Again
+  - keyText: player1
+    translatedText: Player 1
+  - keyText: player2
+    translatedText: Player 2
+  - keyText: usetomove
+    translatedText: 'Use these to move up/down:'
+  - keyText: usetoaim
+    translatedText: 'Use these to aim up/down:'
+  - keyText: usetoshoot
+    translatedText: 'Use this to shoot:'
+  - keyText: howtoplay
+    translatedText: How to play!
+  - keyText: go
+    translatedText: Go!
