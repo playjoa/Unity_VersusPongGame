@@ -16,31 +16,43 @@ public class StoreManager : MonoBehaviour
     private Image targetItemImageStore;
     
     private BuyableItem currentItemToBuy;
-
     public int PlayerIDInStore => playerIDBuyingInStore;
-
-    void UpdateStoreUI() 
-    {
-        targetItemImageStore.sprite = currentItemToBuy.sprItem;
-        txtDescItem.text = currentItemToBuy.DescItem();
-
-        if (currentItemToBuy.HasItem())
-        {
-            btnBuy.SetActive(false);
-            txtPriceItem.text = Translate.GetTranslatedText("equipped");
-            return;
-        }
-
-        btnBuy.SetActive(true);
-        txtPriceItem.text = "$:" + currentItemToBuy.ItemPrice;
-    }
 
     public void ReceiveItem(BuyableItem buyableItem)
     {
         currentItemToBuy = buyableItem;
-        
         UpdateStoreUI();
+    }
 
+    void UpdateStoreUI() 
+    {
+        SetUIFixedItemInfo();
+
+        if (currentItemToBuy.HasItem())
+        {
+            SetUIForOwnedItem();
+            return;
+        }
+
+        SetUIForAvailableToBuyItem();
+    }
+
+    void SetUIFixedItemInfo() 
+    {
+        targetItemImageStore.sprite = currentItemToBuy.sprItem;
+        txtDescItem.text = currentItemToBuy.DescItem();
+    }
+
+    void SetUIForOwnedItem() 
+    {
+        btnBuy.SetActive(false);
+        txtPriceItem.text = Translate.GetTranslatedText("equipped");
+    }
+
+    void SetUIForAvailableToBuyItem() 
+    {
+        btnBuy.SetActive(true);
+        txtPriceItem.text = "$:" + currentItemToBuy.ItemPrice;
     }
 
     public void ClickBuyItem() 

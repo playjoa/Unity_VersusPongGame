@@ -7,13 +7,27 @@ public class SoundtrackManager : MonoBehaviour {
     [SerializeField]
     private AudioClip[] playlistMenu, playlistGameplay;
 
-    public AudioSource soundTrackSource;
+    private AudioSource soundTrackSource;
 
     private void Awake()
     {
         CheckForOtherMusicSourcesAndDeleteThem();
-
         GetSoundTrackSourceIfNotSet();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void CheckForOtherMusicSourcesAndDeleteThem()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("music");
+
+        if (objs.Length > 1)
+            Destroy(this.gameObject);
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void GetSoundTrackSourceIfNotSet()
@@ -22,22 +36,15 @@ public class SoundtrackManager : MonoBehaviour {
             soundTrackSource = GetComponent<AudioSource>();
     }
 
-    void CheckForOtherMusicSourcesAndDeleteThem() 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("music");
+        CancelInvoke();
 
-        if (objs.Length > 1)
-            Destroy(this.gameObject);
-        
-        DontDestroyOnLoad(this.gameObject);
+        if (scene.name == "1_Menu")
+            PlayRandomMusicFromMenuPlaylist();
+        else
+            PlayRandomMusicFromGameplayPlaylist();
     }
-
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    int RandomInSoundTrack(AudioClip[] playlistRef) => Random.Range(0, playlistRef.Length);
 
     void PlayRandomMusicFromMenuPlaylist()
     {
@@ -53,13 +60,5 @@ public class SoundtrackManager : MonoBehaviour {
         Invoke("PlayRandomMusicFromGameplayPlaylist", soundTrackSource.clip.length);
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        CancelInvoke();
-
-        if (scene.name == "Menu")
-            PlayRandomMusicFromMenuPlaylist();
-        else
-            PlayRandomMusicFromGameplayPlaylist();
-    }
+    int RandomInSoundTrack(AudioClip[] playlistRef) => Random.Range(0, playlistRef.Length);
 }

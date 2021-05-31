@@ -27,6 +27,7 @@ public class BulletStats : MonoBehaviour
     public BulletMovement BulletMovement => bulletMovement;
     public Color BulletColor => graphicsBullet.color;
     public Sprite sprBullet => graphicsBullet.sprite;
+    public float BulletLocalScale => transform.localScale.x;
 
     public void SetUpBullet(int ownerID, Vector2 startDirection, Color bulletColor)
     {
@@ -49,6 +50,14 @@ public class BulletStats : MonoBehaviour
     {
         CurrentBulletDamage = newDamageValue;
         bulletBonusTrail.SetActive(true);
+    }
+
+    public void SetNewBulletSize(float scaleToSet)
+    {
+        if (scaleToSet < 0)
+            return;
+
+        transform.localScale = Vector3.one * scaleToSet;
     }
 
     void SetUpBulletColor(Color colorToSet)

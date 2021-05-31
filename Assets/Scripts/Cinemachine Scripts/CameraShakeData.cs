@@ -4,6 +4,7 @@
 [CreateAssetMenu(menuName = "Camera Shake Data", fileName = "New Shake Data")]
 public class CameraShakeData : ScriptableObject
 {
+    [Header("-----Shake Data-----")]
     [SerializeField]
     private float _shakeAmplitude = 1.2f;
 

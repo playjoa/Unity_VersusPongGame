@@ -7,8 +7,8 @@ public class GameBoundaries : MonoBehaviour
 
     private static Vector2 bottomPosition, topPosition;
     
-    public static Vector2 TopBoundarie => topPosition;
-    public static Vector2 BottomBoundarie => bottomPosition;
+    public static float Y_TopBoundarie => topPosition.y;
+    public static float Y_BottomBoundarie => bottomPosition.y;
 
     private void Awake()
     {
@@ -20,13 +20,12 @@ public class GameBoundaries : MonoBehaviour
         bottomPosition = GetWorldPositionFromCamera(Vector2.zero);
         topPosition = GetWorldPositionFromCamera(ScreenSize);
     }
-
-    Vector2 ScreenSize => new Vector2(Screen.width, Screen.height);
-
-    Vector2 GetWorldPositionFromCamera(Vector2 targetPosition) 
+    Vector2 GetWorldPositionFromCamera(Vector2 targetPosition)
     {
         return GameCamera().ScreenToWorldPoint(targetPosition);
     }
+
+    Vector2 ScreenSize => new Vector2(Screen.width, Screen.height);
 
     Camera GameCamera()
     {

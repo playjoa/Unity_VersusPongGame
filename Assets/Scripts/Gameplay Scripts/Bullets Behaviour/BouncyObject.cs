@@ -48,6 +48,13 @@ public abstract class BouncyObject : MonoBehaviour
     {
         validBounceableSurfaces = newBounceables;
     }
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isThisAValidBounceableSurface(collision.gameObject))
+        {
+            BounceOnSurface(collision.contacts[0].normal);
+        }
+    }
 
     private bool isThisAValidBounceableSurface(GameObject objectHit)
     {
@@ -69,12 +76,4 @@ public abstract class BouncyObject : MonoBehaviour
     }
 
     public virtual void OnObjectBounce() { }
-
-    public virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (isThisAValidBounceableSurface(collision.gameObject))
-        {
-            BounceOnSurface(collision.contacts[0].normal);
-        }
-    }
 }

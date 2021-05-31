@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe0d01a40080b848a40fe618c796d16, type: 3}
+  m_Name: 1_Rotating Objects
+  m_EditorClassIdentifier: 
+  _levelID: 1
+  _possibleObstacles:
+  - {fileID: 2955205195623723443, guid: fbdb5653dd2c2ec4abbabd72fd44f8a4, type: 3}
+  - {fileID: 1157327973042983554, guid: e5d31a8a453521946a6f4c09d83c6f04, type: 3}
+  - {fileID: 4891440896631979723, guid: 0a797b41fb547f14e88acb45ca33748e, type: 3}
+  - {fileID: 7998432113009995300, guid: 5fb174732655dcc4d9a803edf938c572, type: 3}

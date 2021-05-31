@@ -23,29 +23,12 @@ namespace PlayerLogic.Actions
             ProcessShooting();
         }
 
-        Vector2 AimingDirection()
-        {
-            return aimTransform.localRotation * Vector2.up;
-        }
-
         void ProcessShooting()
         {
             if (PlayersInputs.PlayerPressedFire(playerID))
             {
                 FireBullet();
             }
-        }
-
-        BulletStats RequestBulletFromPool()
-        {
-            return ObjectPooler.Instance.RequestObject(playerStats.BulletIDPlayer(), aimTransform.position).GetComponent<BulletStats>();
-        }
-
-        void ShotFeedback()
-        {
-
-            RequestCameraShake?.Invoke(shootCameraShake);
-            OnPlayerShot?.Invoke(playerStats);
         }
 
         void FireBullet()
@@ -55,5 +38,21 @@ namespace PlayerLogic.Actions
 
             ShotFeedback();
         }
+
+        BulletStats RequestBulletFromPool()
+        {
+            return ObjectPooler.Instance.RequestObject(playerStats.LoadedPlayerBulletID(), aimTransform.position).GetComponent<BulletStats>();
+        }
+
+        Vector2 AimingDirection()
+        {
+            return aimTransform.localRotation * Vector2.up;
+        }
+
+        void ShotFeedback()
+        {
+            RequestCameraShake?.Invoke(shootCameraShake);
+            OnPlayerShot?.Invoke(playerStats);
+        }        
     }
 }

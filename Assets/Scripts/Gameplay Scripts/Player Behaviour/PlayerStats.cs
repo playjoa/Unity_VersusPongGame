@@ -35,7 +35,7 @@ namespace PlayerLogic
             _playerGraphics.color = _playerColor;
         }
 
-        public string BulletIDPlayer()
+        public string LoadedPlayerBulletID()
         {
             return "bullet_" + PlayersDataManager.PlayerCurrentBulletLoaded(_playerID);
         }

@@ -33,14 +33,6 @@ namespace PlayerLogic.Inputs
             currentPlayersList = playerList;
         }
 
-        static bool isThisPlayerAvailable(int playerID)
-        {
-            if (playerID < 0 || currentPlayersList.Count <= playerID)
-                return false;
-
-            return true;
-        }
-
         public static bool PressedPause => Input.GetKeyDown(KeyCode.Escape);
 
         public static int PlayerMovementDirection(int playerID)
@@ -74,6 +66,20 @@ namespace PlayerLogic.Inputs
             }
 
             return currentPlayersList[playerID].PressedFire;
+        }
+
+        static bool isThisPlayerAvailable(int playerID)
+        {
+            if(currentPlayersList == null)
+            {
+                Debug.Log("Missing player inputs!");
+                return false;
+            }
+
+            if (playerID < 0 || playerID >= currentPlayersList.Count)
+                return false;
+
+            return true;
         }
     }
 }

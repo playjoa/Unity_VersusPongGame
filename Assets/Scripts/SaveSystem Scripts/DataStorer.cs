@@ -56,6 +56,8 @@ namespace SaveLoadSystem
 
         static bool SaveFileExists()
         {
+            Debug.Log(SaveDataPath);
+
             if (File.Exists(SaveDataPath))
                 return true;
 

@@ -24,7 +24,7 @@ namespace PlayerLogic.Actions
 
         bool isMovingOutUp(float moveDir)
         {
-            if (transform.position.y > GameBoundaries.TopBoundarie.y - playerStats.PlayerHeight / 2 && moveDir > 0)
+            if (transform.position.y > GameBoundaries.Y_TopBoundarie - playerStats.PlayerHeight / 2 && moveDir > 0)
                 return true;
 
             return false;
@@ -32,7 +32,7 @@ namespace PlayerLogic.Actions
 
         bool isMovingOutDown(float moveDir)
         {
-            if (transform.position.y < GameBoundaries.BottomBoundarie.y + playerStats.PlayerHeight / 2 && moveDir < 0)
+            if (transform.position.y < GameBoundaries.Y_BottomBoundarie + playerStats.PlayerHeight / 2 && moveDir < 0)
                 return true;
 
             return false;

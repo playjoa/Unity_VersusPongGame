@@ -26,6 +26,7 @@ namespace PlayerLogic.Inputs
         {
             return Input.GetKeyDown(buttonToCheckPress);
         }
+
         bool IsPressingButton(KeyCode buttonToCheckPress)
         {
             return Input.GetKey(buttonToCheckPress);

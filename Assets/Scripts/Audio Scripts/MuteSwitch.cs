@@ -50,17 +50,20 @@ public class MuteSwitch : MonoBehaviour {
 
     void TurnDownMusicVolume()
     {
-        try
-        {
-            GameObject music = GameObject.FindGameObjectWithTag("music");
-            AudioSource musica = music.GetComponent<AudioSource>();
+        GameObject musicSourceObject = GameObject.FindGameObjectWithTag("music");
 
-            if (isMusicMute)
-                musica.volume = 0;
-            else
-                musica.volume = defaultMusicVolume;
-        }
-        catch { Debug.Log("Soundtrack not found!"); }
+        if (!musicSourceObject)
+            return;
+
+        AudioSource musicEmitter = musicSourceObject.GetComponent<AudioSource>();
+
+        if (!musicEmitter)
+            return;
+
+        if (isMusicMute)
+            musicEmitter.volume = 0;
+        else
+            musicEmitter.volume = defaultMusicVolume;
     }
 
     void SpriteSwap()

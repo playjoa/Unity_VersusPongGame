@@ -26,8 +26,12 @@ public class MenuBulletMovement : BouncyObject
 
         StartBulletDirection();
     }
+    void SetBounceableObjects()
+    {
+        SetNewListOfBounceables(bounceableObjects);
+    }
 
-    public void StartBulletDirection()
+    void StartBulletDirection()
     {
         SetVelocity(Random.Range(minSpeed, maxSpeed));
         SetObjectDirection(RandomDirection());
@@ -43,11 +47,6 @@ public class MenuBulletMovement : BouncyObject
     public override void MoveObject()
     {
         transform.Translate(objectMovementDirection * objectVelocity * Time.deltaTime);
-    }
-
-    void SetBounceableObjects()
-    {
-        SetNewListOfBounceables(bounceableObjects);
     }
 
     float DirectionRange => Random.Range(-1f, 1f);

@@ -30,26 +30,24 @@ public class SoundManager : MonoBehaviour {
         PassValuesToStaticSource();
         InitiateDictionary();
     }
+    void PassValuesToStaticSource()
+    {
+        GetSoundSourceIfNotSet();
+        storedNormalEmissor = soundSource;
+    }
 
+    void GetSoundSourceIfNotSet()
+    {
+        if (soundSource == null)
+            soundSource = GetComponent<AudioSource>();
+    }
+    
     void InitiateDictionary()
     {
         listaSons = new Dictionary<string, SoundFX>();
 
         foreach (SoundFX s in sounds)
             listaSons.Add(s.idSom, s);
-    }
-
-   void PassValuesToStaticSource() 
-   {
-        GetSoundSourceIfNotSet();
-
-        storedNormalEmissor = soundSource;
-   }
-
-    void GetSoundSourceIfNotSet()
-    {
-        if (soundSource == null)
-            soundSource = GetComponent<AudioSource>();
     }
 
     #region UI STUFF

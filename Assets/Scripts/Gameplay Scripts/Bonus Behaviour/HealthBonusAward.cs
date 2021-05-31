@@ -13,13 +13,10 @@ public class HealthBonusAward : BonusAward
 
     public override void AwardPlayer(BulletStats bulletHit)
     {
-        base.AwardPlayer(bulletHit);
-
         HealPlayer(bulletHit.PlayerOwnerID, healthAmmountToheal);
         SpawnDamageText();
         DestroyBonus();
     }
-
 
     void SpawnDamageText()
     {

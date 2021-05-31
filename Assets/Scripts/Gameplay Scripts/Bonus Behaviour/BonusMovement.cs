@@ -19,22 +19,21 @@ public class BonusMovement : BouncyObject
 
         InitializeMovement();
     }
-
-    void SetBounceableObjects()
-    {
-        SetNewListOfBounceables(bounceableObjects);
-    }
-
     void InitializeMovement()
     {
         SetVelocity(Random.Range(minSpeed, maxSpeed));
         SetObjectDirection(RandomDirection());
     }
 
-    float DirectionRange => Random.Range(-1f, 1f);
+    void SetBounceableObjects()
+    {
+        SetNewListOfBounceables(bounceableObjects);
+    }
 
     Vector2 RandomDirection()
     {
         return new Vector2(DirectionRange, DirectionRange);
     }
+
+    float DirectionRange => Random.Range(-1f, 1f);
 }

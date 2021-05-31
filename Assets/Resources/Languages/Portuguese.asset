@@ -82,3 +82,13 @@ MonoBehaviour:
     translatedText: Como jogar!
   - keyText: go
     translatedText: Vai!
+  - keyText: levelselect
+    translatedText: Selecione uma Fase
+  - keyText: leveldesc0
+    translatedText: "Obst\xE1culos Est\xE1ticos"
+  - keyText: leveldesc1
+    translatedText: "Obst\xE1culos Rotativos"
+  - keyText: leveldesc2
+    translatedText: "Obst\xE1culos em Movimento"
+  - keyText: leveldesc3
+    translatedText: "Qualquer tipo de Obst\xE1culos"

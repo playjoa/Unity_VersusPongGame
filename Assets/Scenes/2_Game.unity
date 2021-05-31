@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31a9aee909b203459b35f154aa84a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRateInSeconds: 8
+  spawnRateInSeconds: 4
   spawnChancePercentage: 60
   maxBonusDuringGame: 3
   bonusIDsToSpawn:
@@ -2119,7 +2119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dab2cc056607c7468a72dc7623de47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GizmosColor: {r: 0, g: 0.5921569, b: 0.9019608, a: 0.56078434}
+  colorOfAreaInEditor: {r: 0, g: 0.65882355, b: 1, a: 0.48235294}
 --- !u!1 &717982608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3439,11 +3439,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclesParent: {fileID: 1029400008}
-  possibleObstacles:
-  - {fileID: 2955205195623723443, guid: fbdb5653dd2c2ec4abbabd72fd44f8a4, type: 3}
-  - {fileID: 1157327973042983554, guid: e5d31a8a453521946a6f4c09d83c6f04, type: 3}
-  - {fileID: 4891440896631979723, guid: 0a797b41fb547f14e88acb45ca33748e, type: 3}
-  - {fileID: 7998432113009995300, guid: 5fb174732655dcc4d9a803edf938c572, type: 3}
+  obstacleLevelData:
+  - {fileID: 11400000, guid: 1ddde6c8c2e2e374e80af6921fc9de63, type: 2}
+  - {fileID: 11400000, guid: d04dfca5a67692e418bd472077271338, type: 2}
+  - {fileID: 11400000, guid: e3a6f54bec8094c4f81eb1684364b5e3, type: 2}
+  - {fileID: 11400000, guid: 38fe1941d10c6644cbb26a1a61c51539, type: 2}
   spawnAreaPlayer_0: {fileID: 676332345}
   spawnAreaPlayer_1: {fileID: 1622360069}
 --- !u!1 &1030678743
@@ -5208,7 +5208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dab2cc056607c7468a72dc7623de47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GizmosColor: {r: 0.29803923, g: 0.81960785, b: 0.21568628, a: 0.49019608}
+  colorOfAreaInEditor: {r: 0.26666668, g: 0.7411765, b: 0.19607843, a: 0.2901961}
 --- !u!4 &1295648505
 Transform:
   m_ObjectHideFlags: 0
@@ -5792,7 +5792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dab2cc056607c7468a72dc7623de47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GizmosColor: {r: 0, g: 0.65882355, b: 1, a: 0.41960785}
+  colorOfAreaInEditor: {r: 0, g: 0.65882355, b: 1, a: 0.48235294}
 --- !u!1 &1647456359
 GameObject:
   m_ObjectHideFlags: 0

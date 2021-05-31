@@ -82,3 +82,13 @@ MonoBehaviour:
     translatedText: How to play!
   - keyText: go
     translatedText: Go!
+  - keyText: levelselect
+    translatedText: Level Selector
+  - keyText: leveldesc0
+    translatedText: Static Objects
+  - keyText: leveldesc1
+    translatedText: Rotating Objects
+  - keyText: leveldesc2
+    translatedText: Moving Objects
+  - keyText: leveldesc3
+    translatedText: Random Type Objects

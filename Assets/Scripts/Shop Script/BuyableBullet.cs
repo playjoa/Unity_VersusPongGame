@@ -15,14 +15,12 @@ public class BuyableBullet : BuyableItem
     public override void OnEnable()
     {
         base.OnEnable();
-
         InitializeItemInStore();
     }
 
     void InitializeItemInStore() 
     {
         SetImageToItem(bulletToBuy.sprBullet);
-
         PrepareUI_ITem();
 
         if (ItemEquiped())
@@ -43,17 +41,44 @@ public class BuyableBullet : BuyableItem
     {
         if (ItemEquiped())
         {
-            backGroundItem.color = colorSelected;
+            SetUIForItemEquiped();
             return;
         }
 
         if (HasItem())
         {
-            backGroundItem.color = colorHasItem;
+            SetUIForItemOwned();
             return;
         }
+        SetUIForItemAvailableToPurchase();
+    }
 
+    void SetUIForItemEquiped() 
+    {
+        backGroundItem.color = colorSelected;
+    }
+
+    void SetUIForItemOwned()
+    {
+        backGroundItem.color = colorHasItem;
+    }
+
+    void SetUIForItemAvailableToPurchase()
+    {
         backGroundItem.color = colorNotSelected;
+    }
+
+    bool ItemEquiped()
+    {
+        if (PlayersDataManager.PlayerCurrentBulletLoaded(idPlayerBuyer) == ItemIndex)
+            return true;
+
+        return false;
+    }
+
+    public override bool HasItem()
+    {
+        return PlayersDataManager.PlayerHasBulletItem(idPlayerBuyer, ItemIndex);
     }
 
     public override void OnItemBought()
@@ -66,27 +91,14 @@ public class BuyableBullet : BuyableItem
     {
         string descItem = "";
 
-        descItem += DescBulletItem("damage", bulletToBuy.BaseBulletDamage.ToString());
-        descItem += DescBulletItem("speed", bulletToBuy.BulletMovement.BulletVelocity.ToString());
-        descItem += DescBulletItem("maxbounce", bulletToBuy.BulletMovement.BulletMaxBounces.ToString());
+        descItem += FormatDescriptionItem("damage", bulletToBuy.BaseBulletDamage.ToString());
+        descItem += FormatDescriptionItem("speed", bulletToBuy.BulletMovement.BulletVelocity.ToString());
+        descItem += FormatDescriptionItem("maxbounce", bulletToBuy.BulletMovement.BulletMaxBounces.ToString());
 
         return descItem;
-    }
+    } 
 
-    public override bool HasItem()
-    {
-        return PlayersDataManager.PlayerHasBulletItem(idPlayerBuyer, ItemIndex);
-    }
-
-    bool ItemEquiped()
-    {
-        if (PlayersDataManager.PlayerCurrentBulletLoaded(idPlayerBuyer) == ItemIndex)
-            return true;
-
-        return false;
-    }
-
-    string DescBulletItem(string idText, string valueToSet)
+    string FormatDescriptionItem(string idText, string valueToSet)
     {
         return " - " + Translate.GetTranslatedText(idText) + " " + valueToSet + " \n";
     }
@@ -94,7 +106,6 @@ public class BuyableBullet : BuyableItem
     void SelectItem()
     {
         PlayersDataManager.SetNewPlayerCurrentBullet(idPlayerBuyer, ItemIndex);
-
         UpdateAllItens();
     }
 

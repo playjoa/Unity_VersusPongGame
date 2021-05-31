@@ -21,11 +21,6 @@ namespace PlayerLogic.Actions
             SetAimToMiddleAngle();
         }
 
-        void SetAimToMiddleAngle() 
-        {
-            verticalRotation = (minAimAngle + maxAimAngle) / 2;
-        }
-
         private void Update()
         {
             if (!GameManager.isPlayersTurn(playerStats))
@@ -36,19 +31,22 @@ namespace PlayerLogic.Actions
 
             ProcessAim();
         }
-
-        void ToggleAim(bool value)
+        void SetAimToMiddleAngle()
         {
-            if (value && aimTransform.gameObject.activeSelf)
-                return;
-
-            if (!value && !aimTransform.gameObject.activeSelf)
-                return;
-
-            aimTransform.gameObject.SetActive(value);
+            verticalRotation = (minAimAngle + maxAimAngle) / 2;
         }
 
-        float RotationValue()
+        void ProcessAim()
+        {
+            ToggleAim(true);
+
+            verticalRotation += RotationDirectionValue();
+            verticalRotation = RotationClamped(verticalRotation);
+
+            aimTransform.localRotation = Quaternion.Euler(0f, 0f, verticalRotation);
+        }
+
+        float RotationDirectionValue()
         {
             return PlayersInputs.PlayerAimDirection(playerID) * aimSensitivity * Time.deltaTime;
         }
@@ -58,14 +56,15 @@ namespace PlayerLogic.Actions
             return Mathf.Clamp(refRotation, minAimAngle, maxAimAngle);
         }
 
-        void ProcessAim()
+        void ToggleAim(bool boolValueToSet)
         {
-            ToggleAim(true);
+            if (boolValueToSet && aimTransform.gameObject.activeSelf)
+                return;
 
-            verticalRotation += RotationValue();
-            verticalRotation = RotationClamped(verticalRotation);
+            if (!boolValueToSet && !aimTransform.gameObject.activeSelf)
+                return;
 
-            aimTransform.localRotation = Quaternion.Euler(0f, 0f, verticalRotation);
+            aimTransform.gameObject.SetActive(boolValueToSet);
         }
     }
 }

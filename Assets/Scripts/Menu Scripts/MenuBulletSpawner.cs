@@ -32,24 +32,6 @@ public class MenuBulletSpawner : MonoBehaviour
             SpawnBullet();
     }
 
-    void SpawnBullet()
-    {
-        if (bulletSpawnArea == null)
-            return;
-
-        ObjectPooler.Instance.RequestObject(BulletIDToSpawn(), bulletSpawnArea.SpawnPosition());
-    }
-
-    string BulletIDToSpawn()
-    {
-        if (bulletMenuIDs.Count == 0)
-            return "";
-
-        int idRandomBonusID = Random.Range(0, bulletMenuIDs.Count);
-
-        return bulletMenuIDs[idRandomBonusID];
-    }
-
     bool CanSpawn()
     {
         if (TotalActiveBonuses() >= maxBulletQty)
@@ -61,5 +43,23 @@ public class MenuBulletSpawner : MonoBehaviour
     int TotalActiveBonuses()
     {
         return FindObjectsOfType<MenuBulletMovement>().Length;
+    }
+
+    void SpawnBullet()
+    {
+        if (bulletSpawnArea == null)
+            return;
+
+        ObjectPooler.Instance.RequestObject(BulletIDToSpawn(), bulletSpawnArea.RandomLocationInsideArea());
+    }
+
+    string BulletIDToSpawn()
+    {
+        if (bulletMenuIDs.Count == 0)
+            return "";
+
+        int idRandomBonusID = Random.Range(0, bulletMenuIDs.Count);
+
+        return bulletMenuIDs[idRandomBonusID];
     }
 }

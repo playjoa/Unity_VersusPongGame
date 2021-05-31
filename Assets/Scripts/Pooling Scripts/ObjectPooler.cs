@@ -109,53 +109,6 @@ public class ObjectPooler : MonoBehaviour
     }
 
     ///<summary>
-    ///Requests an object from the pool and assigns the transform reference to object and returns a GameObject reference.
-    ///</summary>
-    public GameObject RequestObject(string id, Transform tf)
-    {
-        if (!poolDictionary.ContainsKey(id))
-        {
-            Debug.LogError("Can't find object in pool list with tag: " + id);
-            return null;
-        }
-
-        GameObject auxGo = null;
-
-        for (int i = 0; i < poolDictionary[id].Count; i++)
-        {
-
-            if (!poolDictionary[id][i].activeSelf)
-            {
-                auxGo = poolDictionary[id][i];
-                PrepareObject(auxGo, tf);
-                break;
-            }
-        }
-
-        if (auxGo == null)
-        {
-            //Could not find available PoolObject to use! Instantiating new one if max qty not reached
-            if (poolDictionary[id].Count < max_QtyOfObject[id] || max_QtyOfObject[id] == 0)
-                auxGo = InstatiateInDictionary(id, tf);
-            else
-            {
-                //Getting farthest Object in list to use in request
-                int currentCount = poolCounter[id];
-
-                auxGo = poolDictionary[id][currentCount];
-                PrepareObject(auxGo, tf);
-                currentCount++;
-
-                if (currentCount >= poolDictionary[id].Count)
-                    currentCount = 0;
-
-                poolCounter[id] = currentCount;
-            }
-        }
-        return auxGo;
-    }
-
-    ///<summary>
     ///Requests an object from the pool and assigns a position to be activated! The rotation of the object will be the same as prefab.
     ///</summary>
     public GameObject RequestObject(string id, Vector3 position)
@@ -210,117 +163,6 @@ public class ObjectPooler : MonoBehaviour
         return auxGo;
     }
 
-    ///<summary>
-    ///Requests an object from the pool and assigns a position and rotation.
-    ///</summary>
-    public GameObject RequestObject(string id, Vector3 position, Quaternion idt)
-    {
-        if (!poolDictionary.ContainsKey(id))
-        {
-            Debug.LogError("Can't find object in pool list with tag: " + id);
-            return null;
-        }
-
-        GameObject auxGo = null;
-
-        for (int i = 0; i < poolDictionary[id].Count; i++)
-        {
-            if (!poolDictionary[id][i].activeSelf)
-            {
-                auxGo = poolDictionary[id][i];
-                PrepareObject(auxGo, position, idt);
-                break;
-            }
-        }
-
-        if (auxGo == null)
-        {
-            //Could not find available PoolObject to use! Instantiating new one if max qty not reached
-            if (poolDictionary[id].Count < max_QtyOfObject[id] || max_QtyOfObject[id] == 0)
-                auxGo = InstatiateInDictionary(id, position, idt);
-            else
-            {
-                //Getting farthest Object in list to use in request
-                int currentCount = poolCounter[id];
-
-                auxGo = poolDictionary[id][currentCount];
-                PrepareObject(auxGo, position, idt);
-                currentCount++;
-
-                if (currentCount >= poolDictionary[id].Count)
-                    currentCount = 0;
-
-                poolCounter[id] = currentCount;
-            }
-        }
-        return auxGo;
-    }
-
-    ///<summary>
-    ///Requests an object from the pool and assigns a local position to be activated! The rotation of the object will be the same as prefab.
-    ///</summary>
-    public GameObject RequestObjectWithLocalPosition(string id, Vector3 position)
-    {
-        if (!poolDictionary.ContainsKey(id))
-        {
-            Debug.LogError("Can't find object in pool list with tag: " + id);
-            return null;
-        }
-
-        GameObject auxGo = null;
-
-        for (int i = 0; i < poolDictionary[id].Count; i++)
-        {
-
-            if (poolDictionary[id][i] == null)
-            {
-                Debug.LogError("Object missing in pool of id: " + id + ". Instantiating new one to replace missing object");
-                poolDictionary[id].RemoveAt(i);
-                auxGo = null;
-                break;
-            }
-
-            if (!poolDictionary[id][i].activeSelf)
-            {
-                auxGo = poolDictionary[id][i];
-                PrepareObjectWithLocalPosition(auxGo, position);
-                break;
-            }
-        }
-
-        if (auxGo == null)
-        {
-            //Could not find available PoolObject to use! Instantiating new one if max qty not reached
-            if (poolDictionary[id].Count < max_QtyOfObject[id] || max_QtyOfObject[id] == 0)
-                auxGo = InstatiateInDictionaryWithLocalPosition(id, position);
-            else
-            {
-                //Getting farthest Object in list to use in request
-                int currentCount = poolCounter[id];
-
-                auxGo = poolDictionary[id][currentCount];
-                PrepareObjectWithLocalPosition(auxGo, position);
-                currentCount++;
-
-                if (currentCount >= poolDictionary[id].Count)
-                    currentCount = 0;
-
-                poolCounter[id] = currentCount;
-            }
-        }
-        return auxGo;
-    }
-
-    void PrepareObject(GameObject auxObject, Transform tf)
-    {
-        if (auxObject.activeSelf)
-            auxObject.SetActive(false);
-
-        auxObject.transform.position = tf.position;
-        auxObject.transform.rotation = tf.rotation;
-        auxObject.SetActive(true);
-    }
-
     void PrepareObject(GameObject auxObject, Vector3 position)
     {
         if (auxObject.activeSelf)
@@ -330,71 +172,17 @@ public class ObjectPooler : MonoBehaviour
         auxObject.SetActive(true);
     }
 
-    void PrepareObject(GameObject auxObject, Vector3 position, Quaternion idt)
-    {
-        if (auxObject.activeSelf)
-            auxObject.SetActive(false);
-
-        auxObject.transform.position = position;
-        auxObject.transform.rotation = idt;
-        auxObject.SetActive(true);
-    }
-
-    void PrepareObjectWithLocalPosition(GameObject auxObject, Vector3 localPosition)
-    {
-        if (auxObject.activeSelf)
-            auxObject.SetActive(false);
-
-        auxObject.transform.localPosition = localPosition;
-        auxObject.SetActive(true);
-    }
-
-    //Setting object to parent if it exists
     void SetParent(GameObject objectToSetParent)
     {
         if (pool_Parent != null)
             objectToSetParent.transform.SetParent(pool_Parent);
     }
 
-    GameObject InstatiateInDictionaryWithLocalPosition(string idSpawn, Vector3 position)
-    {
-        //Instantiating Object on Demand
-        GameObject aux = Instantiate(refGameObjects[idSpawn]);
-
-        PrepareObjectWithLocalPosition(aux, position);
-        poolDictionary[idSpawn].Add(aux);
-        SetParent(aux);
-        return aux;
-    }
-
     GameObject InstatiateInDictionary(string idSpawn, Vector3 position)
     {
-        //Instantiating Object on Demand
         GameObject aux = Instantiate(refGameObjects[idSpawn]);
 
         PrepareObject(aux, position);
-        poolDictionary[idSpawn].Add(aux);
-        SetParent(aux);
-        return aux;
-    }
-
-    GameObject InstatiateInDictionary(string idSpawn, Transform tf)
-    {
-        //Instanciando Objeto
-        GameObject aux = Instantiate(refGameObjects[idSpawn]);
-
-        PrepareObject(aux, tf);
-        poolDictionary[idSpawn].Add(aux);
-        SetParent(aux);
-        return aux;
-    }
-
-    GameObject InstatiateInDictionary(string idSpawn, Vector3 position, Quaternion idt)
-    {
-        //Instanciando Objeto
-        GameObject aux = Instantiate(refGameObjects[idSpawn]);
-
-        PrepareObject(aux, position, idt);
         poolDictionary[idSpawn].Add(aux);
         SetParent(aux);
         return aux;

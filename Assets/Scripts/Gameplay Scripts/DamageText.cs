@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(TextMesh))]
 public class DamageText : MonoBehaviour
 {
     [SerializeField]
@@ -16,6 +17,11 @@ public class DamageText : MonoBehaviour
     [SerializeField]
     private float yOffSetRange = 1f;
 
+    private void Awake()
+    {
+        GetTextMeshReferenceIfNotSet();
+    }
+
     private void OnEnable()
     {
         SetOffSetPosition();
@@ -29,6 +35,12 @@ public class DamageText : MonoBehaviour
     private void Update()
     {
         MoveTextUp();
+    }
+
+    void GetTextMeshReferenceIfNotSet() 
+    {
+        if (!txtDamageTaken)
+            txtDamageTaken = GetComponent<TextMesh>();
     }
 
     public void SetDamageText(string damageTaken, Color colorToSetText)

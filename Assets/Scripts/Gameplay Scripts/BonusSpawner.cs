@@ -29,6 +29,9 @@ public class BonusSpawner : MonoBehaviour
     void ProcessBonusSpawn()
     {
         if (!GameState.isPlaying())
+            return;
+
+        if (GameState.GetState() == GameStates.Finished)
         {
             CancelInvoke();
             return;
@@ -38,15 +41,7 @@ public class BonusSpawner : MonoBehaviour
             SpawnBonus();
     }
 
-    void SpawnBonus() 
-    {
-        if (bonusSpawnArea == null)
-            return;
-
-        ObjectPooler.Instance.RequestObject(BonusIDToSpawn(), bonusSpawnArea.SpawnPosition());
-    }
-
-    bool CanSpawn() 
+    bool CanSpawn()
     {
         if (TotalActiveBonuses() >= maxBonusDuringGame)
             return false;
@@ -55,6 +50,14 @@ public class BonusSpawner : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    void SpawnBonus() 
+    {
+        if (bonusSpawnArea == null)
+            return;
+
+        ObjectPooler.Instance.RequestObject(BonusIDToSpawn(), bonusSpawnArea.RandomLocationInsideArea());
     }
 
     int TotalActiveBonuses() 
