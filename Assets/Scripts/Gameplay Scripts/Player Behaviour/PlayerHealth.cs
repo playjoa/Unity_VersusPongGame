@@ -6,6 +6,9 @@ namespace PlayerLogic.Actions
     public class PlayerHealth : PlayerComponent
     {
         [SerializeField]
+        private int _totalPlayerHealth = 100;
+
+        [SerializeField]
         private CameraShakeData cameraDamageTakenShake, cameraDeathShake;
 
         [SerializeField]
@@ -39,7 +42,7 @@ namespace PlayerLogic.Actions
 
         void GetHealthValues()
         {
-            totalHealth = playerStats.PlayerHealth;
+            totalHealth = _totalPlayerHealth;
             CurrentPlayerHealth = totalHealth;
             UpdatePlayerHealthInUI();
         }

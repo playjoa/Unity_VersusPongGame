@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(BulletMovement))]
+[RequireComponent(typeof(BulletDamage))]
 public class BulletStats : MonoBehaviour
 {
     [SerializeField]
     private BulletMovement bulletMovement;
 
     [SerializeField]
-    private int bulletDamage = 15;
+    private BulletDamage bulletDamage;
 
     [SerializeField]
     private string bulletExploID = "bulletexplo";
@@ -19,7 +21,7 @@ public class BulletStats : MonoBehaviour
 
     private Vector2 bulletStartDirection = Vector2.one;
 
-    public int BaseBulletDamage => bulletDamage;
+    public int BaseBulletDamage => bulletDamage.BulletDamageAmmount;
     public int PlayerOwnerID { get; private set; }
     public int CurrentBulletDamage { get; private set; }
 
@@ -29,11 +31,25 @@ public class BulletStats : MonoBehaviour
     public Sprite sprBullet => graphicsBullet.sprite;
     public float BulletLocalScale => transform.localScale.x;
 
+    private void Awake()
+    {
+        GetBulletComponentsIfNotSet();    
+    }
+
+    void GetBulletComponentsIfNotSet() 
+    {
+        if (!bulletMovement)
+            bulletMovement.GetComponent<BulletMovement>();
+
+        if (!bulletDamage)
+            bulletDamage.GetComponent<BulletDamage>();
+    }
+
     public void SetUpBullet(int ownerID, Vector2 startDirection, Color bulletColor)
     {
         PlayerOwnerID = ownerID;
         bulletStartDirection = startDirection.normalized;
-        CurrentBulletDamage = bulletDamage;
+        CurrentBulletDamage = BaseBulletDamage;
 
         bulletMovement.StartBulletDirection();
         SetUpBulletColor(bulletColor);

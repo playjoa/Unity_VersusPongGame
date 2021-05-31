@@ -8,9 +8,6 @@ namespace PlayerLogic
         private int _playerID = 0;
 
         [SerializeField]
-        private int _totalHealth = 100;
-
-        [SerializeField]
         private Transform _graphicsTransform;
 
         [SerializeField]
@@ -21,7 +18,6 @@ namespace PlayerLogic
 
         public bool isPlayerDead { get; private set; } = false;
         public int PlayerID => _playerID;
-        public int PlayerHealth => _totalHealth;
         public float PlayerHeight => _graphicsTransform.localScale.y;
         public Color PlayerColor => _playerColor;
 

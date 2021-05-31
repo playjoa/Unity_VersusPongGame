@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletMovement: {fileID: 7398928196001818266}
-  bulletDamage: 10
+  bulletDamage: {fileID: -3658481764454008844}
   bulletExploID: bulletExplo
   graphicsBullet: {fileID: 7398928196001818264}
   bulletBonusTrail: {fileID: 2021227357994033634}
@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a436d3677a248814081348faa49e95e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletDamageAmmount: 10
 --- !u!114 &1888407693228076588
 MonoBehaviour:
   m_ObjectHideFlags: 0

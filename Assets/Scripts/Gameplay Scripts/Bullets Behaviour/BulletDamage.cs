@@ -4,7 +4,12 @@ using PlayerLogic.Actions;
 
 public class BulletDamage : MonoBehaviour
 {
+    [SerializeField]
+    private int _bulletDamageAmmount = 15;
+
     private BulletStats bulletStats;
+
+    public int BulletDamageAmmount => _bulletDamageAmmount;
 
     private void OnEnable()
     {
@@ -22,7 +27,7 @@ public class BulletDamage : MonoBehaviour
         if (playerToDamage == null)
             return;
 
-        playerToDamage.TakeDamage(bulletStats.CurrentBulletDamage);
+        playerToDamage.TakeDamage(_bulletDamageAmmount);
         SpawnDamageText();
     }
 
@@ -31,7 +36,7 @@ public class BulletDamage : MonoBehaviour
         RequestDamageText.RequestText(DamageGivenInString, bulletStats.BulletColor, transform.position);
     }
 
-    string DamageGivenInString => "-" + bulletStats.CurrentBulletDamage;
+    string DamageGivenInString => "-" + _bulletDamageAmmount;
 
     void DestroyBullet() 
     {
