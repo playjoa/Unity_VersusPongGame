@@ -14401,8 +14401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 5.53, y: -3.65}
+  m_EffectColor: {r: 0.9607843, g: 0.9647059, b: 0.98039216, a: 1}
+  m_EffectDistance: {x: 4.5, y: -2.5}
   m_UseGraphicAlpha: 1
 --- !u!1 &1758544628
 GameObject:
