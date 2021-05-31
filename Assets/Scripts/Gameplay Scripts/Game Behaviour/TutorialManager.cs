@@ -16,6 +16,9 @@ public class TutorialManager : MonoBehaviour
 
     public void InitializeTutorial()
     {
+        if (HasSeenTutorial())
+            return;
+
         UI_ManagerGameplay.Instance.ToggleGamePlayScreen(false);
         UI_ManagerGameplay.Instance.ToggleTutorialScreen(true);
     }

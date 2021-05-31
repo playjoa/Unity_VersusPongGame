@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using PlayerLogic;
 using PlayerLogic.Actions;
 
 public class BulletDamage : MonoBehaviour
 {
     private BulletStats bulletStats;
-    private const string textDamageID = "damageText";
 
     private void OnEnable()
     {
@@ -31,12 +28,7 @@ public class BulletDamage : MonoBehaviour
 
     void SpawnDamageText()
     {
-        DamageText damageTextToSet = ObjectPooler.Instance.RequestObject(textDamageID, transform.position).GetComponent<DamageText>();
-
-        if (damageTextToSet == null)
-            return;
-
-        damageTextToSet.SetDamageText(DamageGivenInString, bulletStats.BulletColor);
+        RequestDamageText.RequestText(DamageGivenInString, bulletStats.BulletColor, transform.position);
     }
 
     string DamageGivenInString => "-" + bulletStats.CurrentBulletDamage;

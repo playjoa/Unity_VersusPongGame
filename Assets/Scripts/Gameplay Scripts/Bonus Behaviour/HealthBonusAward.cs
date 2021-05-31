@@ -11,8 +11,6 @@ public class HealthBonusAward : BonusAward
 
     public static Action<int, int> HealPlayer;
 
-    private const string textDamageID = "damageText";
-
     public override void AwardPlayer(BulletStats bulletHit)
     {
         base.AwardPlayer(bulletHit);
@@ -25,12 +23,7 @@ public class HealthBonusAward : BonusAward
 
     void SpawnDamageText()
     {
-        DamageText damageTextToSet = ObjectPooler.Instance.RequestObject(textDamageID, transform.position).GetComponent<DamageText>();
-
-        if (damageTextToSet == null)
-            return;
-
-        damageTextToSet.SetDamageText(HealthAmmountGiven, txtHealPopUpColor);
+        RequestDamageText.RequestText(HealthAmmountGiven, txtHealPopUpColor, transform.position);
     }
 
     string HealthAmmountGiven => "+" + healthAmmountToheal;

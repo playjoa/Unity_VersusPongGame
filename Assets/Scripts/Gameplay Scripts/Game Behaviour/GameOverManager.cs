@@ -113,6 +113,6 @@ public class GameOverManager : MonoBehaviour
 
     string VictoryText() 
     {
-        return "Player " + (playerWhoWon.PlayerID + 1) + " " + Translate.GetTranslatedText("won");
+        return Translate.GetTranslatedText("player") + " " + (playerWhoWon.PlayerID + 1) + " " + Translate.GetTranslatedText("won");
     }
 }

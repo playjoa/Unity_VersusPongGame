@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 8699039221499982371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6345577, y: 0.6345577, z: 0.6345577}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 8699039221961143525}
   m_RootOrder: 0
@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 8699039221961143523}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.27, y: 1.97, z: 0}
-  m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
+  m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
   m_Children:
   - {fileID: 8699039221499982370}
   m_Father: {fileID: 0}
@@ -158,7 +158,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cde8992a376cd234fb8dcb09f80b0763, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f2912e26fd269d4a94e6a747e5fde32, type: 3}
   m_Color: {r: 0, g: 0.65882355, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -233,7 +233,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5599997
+  m_Radius: 0.25
 --- !u!114 &8699039221961143528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,16 +246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9206fb2f0f4b1ce4c8227f31ee9025f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObjectToDeactivate: {fileID: 0}
-  animType: 27
-  animCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  openAnimType: 27
+  closeAnimType: 27
   delayOfAnim: 0.05
   durationOfAnim: 0.3
+  OnAnimationClose:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &869430472244701912
 MonoBehaviour:
   m_ObjectHideFlags: 0

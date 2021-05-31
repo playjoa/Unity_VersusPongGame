@@ -10,75 +10,75 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 143f727fca8812949877a5342829c082, type: 3}
-  m_Name: English (Main)
+  m_Name: Portuguese
   m_EditorClassIdentifier: 
-  keyLanguage: 10
+  keyLanguage: 28
   textsToTranslate:
   - keyText: continue
-    translatedText: Continue
+    translatedText: Continuar
   - keyText: loading
-    translatedText: Loading...
+    translatedText: Carregando...
   - keyText: exit
-    translatedText: Exit
+    translatedText: Sair
   - keyText: shop
-    translatedText: Bullet Shop
+    translatedText: Loja de Balas
   - keyText: config
-    translatedText: Settings
+    translatedText: "Configura\xE7\xF5es"
   - keyText: credits
-    translatedText: Credits
+    translatedText: "Cr\xE9ditos"
   - keyText: madeby
-    translatedText: "Made by Jo\xE3o Milone"
+    translatedText: "Feito por Jo\xE3o Milone"
   - keyText: play
-    translatedText: Play
+    translatedText: Jogar
   - keyText: buy
-    translatedText: Buy
+    translatedText: Comprar
   - keyText: restart
-    translatedText: Restart
+    translatedText: "Recome\xE7ar"
   - keyText: back
-    translatedText: Back
+    translatedText: Voltar
   - keyText: menu
     translatedText: Menu
   - keyText: paused
-    translatedText: Paused
+    translatedText: Pausado
   - keyText: player
-    translatedText: Player
+    translatedText: Jogador
   - keyText: won
-    translatedText: won!
+    translatedText: ganhou!
   - keyText: equipped
-    translatedText: Equipped!
+    translatedText: Equipado!
   - keyText: maxbounce
-    translatedText: 'Max Bounces:'
+    translatedText: 'Max Quiques:'
   - keyText: damage
-    translatedText: 'Damage:'
+    translatedText: 'Dano:'
   - keyText: speed
-    translatedText: 'Speed:'
+    translatedText: 'Velocidade:'
   - keyText: price
-    translatedText: 'Price:'
+    translatedText: "Pre\xE7o:"
   - keyText: audio
     translatedText: 'Audio:'
   - keyText: fx
     translatedText: 'Fx:'
   - keyText: music
-    translatedText: 'Music:'
+    translatedText: "M\xFAsica:"
   - keyText: language
-    translatedText: 'Language:'
+    translatedText: 'Idioma:'
   - keyText: resolution
-    translatedText: 'Resolution:'
+    translatedText: "Resolu\xE7\xE3o:"
   - keyText: draw
-    translatedText: Draw!
+    translatedText: Empate!
   - keyText: playagain
-    translatedText: Play Again
+    translatedText: Jogar de novo
   - keyText: player1
-    translatedText: Player 1
+    translatedText: Jogador 1
   - keyText: player2
-    translatedText: Player 2
+    translatedText: Jogador 2
   - keyText: usetomove
-    translatedText: 'Use these to move up/down:'
+    translatedText: 'Use para se mover para cima/baixo:'
   - keyText: usetoaim
-    translatedText: 'Use these to aim up/down:'
+    translatedText: 'Use para mirar para cima/baixo:'
   - keyText: usetoshoot
-    translatedText: 'Use this to shoot:'
+    translatedText: 'Use para atirar:'
   - keyText: howtoplay
-    translatedText: How to play!
+    translatedText: Como jogar!
   - keyText: go
-    translatedText: Go!
+    translatedText: Vai!

@@ -16,6 +16,16 @@ namespace PlayerLogic.Actions
 
         private float verticalRotation;
 
+        private void Start()
+        {
+            SetAimToMiddleAngle();
+        }
+
+        void SetAimToMiddleAngle() 
+        {
+            verticalRotation = (minAimAngle + maxAimAngle) / 2;
+        }
+
         private void Update()
         {
             if (!GameManager.isPlayersTurn(playerStats))
