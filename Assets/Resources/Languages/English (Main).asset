@@ -64,6 +64,10 @@ MonoBehaviour:
     translatedText: 'Language:'
   - keyText: resolution
     translatedText: 'Resolution:'
+  - keyText: postpro
+    translatedText: 'Post Processing:'
+  - keyText: graphics
+    translatedText: 'Graphics:'
   - keyText: draw
     translatedText: Draw!
   - keyText: playagain

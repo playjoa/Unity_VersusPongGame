@@ -13,7 +13,8 @@ public class MuteSwitch : MonoBehaviour {
     [SerializeField]
     private float defaultMusicVolume = 0.75f;
 
-    public static bool isFXMuted = false, isMusicMute = false;
+    public static bool isFXMuted { get; private set; }
+    public static bool isMusicMute { get; private set; }
 
     private void OnEnable()
     {
@@ -22,30 +23,11 @@ public class MuteSwitch : MonoBehaviour {
 
     private void InitializeVariables()
     {
-        isFXMuted = GetBoolFromPlayerPrefs("fxMuted");
-        isMusicMute = GetBoolFromPlayerPrefs("musicMuted");
+        isFXMuted = PlayerPrefsBool.GetBool("fxMuted");
+        isMusicMute = PlayerPrefsBool.GetBool("musicMuted");
 
         SpriteSwap();
         TurnDownMusicVolume();
-    }
-
-    void SetNewBoolValue(string id, bool valueToSet)
-    {
-        if (!valueToSet)
-        {
-            PlayerPrefs.SetInt(id, 0);
-            return;
-        }
-
-        PlayerPrefs.SetInt(id, 1);
-    }
-
-    bool GetBoolFromPlayerPrefs(string id)
-    {
-        if (PlayerPrefs.GetInt(id) == 0)
-            return false;
-
-        return true;
     }
 
     void TurnDownMusicVolume()
@@ -78,12 +60,12 @@ public class MuteSwitch : MonoBehaviour {
         else
             imgMusic.sprite = sprMusic[0];
     }
+
     public void MuteFX()
     {
         isFXMuted = !isFXMuted;
 
-        SetNewBoolValue("fxMuted", isFXMuted);
-
+        PlayerPrefsBool.SetBool("fxMuted", isFXMuted);
         SpriteSwap();
     }
 
@@ -91,10 +73,8 @@ public class MuteSwitch : MonoBehaviour {
     {
         isMusicMute = !isMusicMute;
 
-        SetNewBoolValue("musicMuted", isMusicMute);
-
+        PlayerPrefsBool.SetBool("musicMuted", isMusicMute);
         SpriteSwap();
-
         TurnDownMusicVolume();
     }
 }
