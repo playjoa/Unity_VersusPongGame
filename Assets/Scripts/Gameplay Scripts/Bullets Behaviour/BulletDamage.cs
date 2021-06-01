@@ -9,7 +9,10 @@ public class BulletDamage : MonoBehaviour
 
     private BulletStats bulletStats;
 
-    public int BulletDamageAmmount => _bulletDamageAmmount;
+    public int BulletBaseDamage => _bulletDamageAmmount;
+    public int BulletCurrentDamage => currentBulletDamage;
+
+    private int currentBulletDamage;
 
     private void OnEnable()
     {
@@ -20,6 +23,13 @@ public class BulletDamage : MonoBehaviour
     {
         if (bulletStats == null)
             bulletStats = GetComponent<BulletStats>();
+
+        currentBulletDamage = _bulletDamageAmmount;
+    }
+
+    public void SetNewDamageToBullet(int newBulletDamageToSet) 
+    {
+        currentBulletDamage = newBulletDamageToSet;
     }
 
     void DamagePlayer(PlayerHealth playerToDamage) 
@@ -27,7 +37,7 @@ public class BulletDamage : MonoBehaviour
         if (playerToDamage == null)
             return;
 
-        playerToDamage.TakeDamage(_bulletDamageAmmount);
+        playerToDamage.TakeDamage(currentBulletDamage);
         SpawnDamageText();
     }
 
@@ -36,7 +46,7 @@ public class BulletDamage : MonoBehaviour
         RequestDamageText.RequestText(DamageGivenInString, bulletStats.BulletColor, transform.position);
     }
 
-    string DamageGivenInString => "-" + _bulletDamageAmmount;
+    string DamageGivenInString => "-" + currentBulletDamage;
 
     void DestroyBullet() 
     {

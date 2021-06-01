@@ -7,7 +7,7 @@ public class BulletDoubleDamageAward : BonusAward
 
     public override void AwardPlayer(BulletStats bulletHit)
     {
-        int newDamageToApple = bulletHit.CurrentBulletDamage * bulletDamageMultiplier;
+        int newDamageToApple = bulletHit.BaseBulletDamage * bulletDamageMultiplier;
 
         bulletHit.SetNewDamage(newDamageToApple);
         DestroyBonus();

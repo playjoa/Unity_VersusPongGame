@@ -21,9 +21,9 @@ public class BulletStats : MonoBehaviour
 
     private Vector2 bulletStartDirection = Vector2.one;
 
-    public int BaseBulletDamage => bulletDamage.BulletDamageAmmount;
     public int PlayerOwnerID { get; private set; }
-    public int CurrentBulletDamage { get; private set; }
+    public int BaseBulletDamage => bulletDamage.BulletBaseDamage;
+    public int CurrentBulletDamage => bulletDamage.BulletCurrentDamage;
 
     public Vector2 BulletStartDirection => bulletStartDirection;
     public BulletMovement BulletMovement => bulletMovement;
@@ -49,7 +49,6 @@ public class BulletStats : MonoBehaviour
     {
         PlayerOwnerID = ownerID;
         bulletStartDirection = startDirection.normalized;
-        CurrentBulletDamage = BaseBulletDamage;
 
         bulletMovement.StartBulletDirection();
         SetUpBulletColor(bulletColor);
@@ -64,7 +63,7 @@ public class BulletStats : MonoBehaviour
 
     public void SetNewDamage(int newDamageValue)
     {
-        CurrentBulletDamage = newDamageValue;
+        bulletDamage.SetNewDamageToBullet(newDamageValue);
         bulletBonusTrail.SetActive(true);
     }
 

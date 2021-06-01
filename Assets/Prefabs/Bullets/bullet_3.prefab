@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -3658481764454008844}
   - component: {fileID: 1888407693228076588}
   - component: {fileID: 6182054793475986292}
+  - component: {fileID: 743278884420259214}
   - component: {fileID: 7398928196001818264}
   - component: {fileID: 7398928196001818245}
   - component: {fileID: 7398928196001818244}
@@ -117,6 +118,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioID: bulletfire
   audioVolume: 1
+--- !u!114 &743278884420259214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7398928196001818271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96652c079feec8942b33e16dd6b9181a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deactivateTime: 30
 --- !u!212 &7398928196001818264
 SpriteRenderer:
   m_ObjectHideFlags: 0
