@@ -1,19 +1,19 @@
+using TMPro;
 using TranslationSystem.Base;
 using UnityEngine;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(Text))]
-public class Translator_UI_Text : MonoBehaviour
+[RequireComponent(typeof(TextMeshPro))]
+public class Translator_TextMeshPro : MonoBehaviour
 {
     [SerializeField] private string textKey = "title";
     [SerializeField] private TranslateFormat translateFormat = TranslateFormat.Standard;
 
-    private Text textFieldToTranslate;
+    private TextMeshPro textFieldToTranslate;
 
     private void OnEnable()
     {
-        if(textFieldToTranslate == null)
-            textFieldToTranslate = GetComponent<Text>();
+        if (textFieldToTranslate == null)
+            textFieldToTranslate = GetComponent<TextMeshPro>();
 
         Translate.OnLanguageChanged += GetTranslatedText;
         GetTranslatedText();
@@ -26,6 +26,6 @@ public class Translator_UI_Text : MonoBehaviour
 
     private void GetTranslatedText()
     {
-        textFieldToTranslate.text = Translate.GetTranslatedText(textKey,translateFormat);
-    }  
+        textFieldToTranslate.text = Translate.GetTranslatedText(textKey, translateFormat);
+    }
 }

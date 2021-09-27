@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+﻿using TranslationSystem.Base;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class StoreManager : MonoBehaviour
@@ -37,19 +38,19 @@ public class StoreManager : MonoBehaviour
         SetUIForAvailableToBuyItem();
     }
 
-    void SetUIFixedItemInfo() 
+    private void SetUIFixedItemInfo() 
     {
         targetItemImageStore.sprite = currentItemToBuy.sprItem;
         txtDescItem.text = currentItemToBuy.DescItem();
     }
 
-    void SetUIForOwnedItem() 
+    private void SetUIForOwnedItem()
     {
         btnBuy.SetActive(false);
         txtPriceItem.text = Translate.GetTranslatedText("equipped");
     }
 
-    void SetUIForAvailableToBuyItem() 
+    private void SetUIForAvailableToBuyItem() 
     {
         btnBuy.SetActive(true);
         txtPriceItem.text = "$:" + currentItemToBuy.ItemPrice;

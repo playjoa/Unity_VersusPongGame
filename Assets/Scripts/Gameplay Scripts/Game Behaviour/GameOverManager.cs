@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using PlayerLogic;
+using TranslationSystem.Base;
 
 public class GameOverManager : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class GameOverManager : MonoBehaviour
         ProcessGameOver();
     }
 
-    void ProcessGameOver() 
+   private void ProcessGameOver() 
     {
         playerWhoWon = GetPlayerWhoWon();
         playerWhoLost = GetPlayerWhoLost();
@@ -43,38 +45,26 @@ public class GameOverManager : MonoBehaviour
         CountVictory(playerWhoWon);
     }
 
-    PlayerStats[] GetAllPlayers()
+    private PlayerStats[] GetAllPlayers()
     {
         return FindObjectsOfType<PlayerStats>();
     }
 
-    PlayerStats GetPlayerWhoWon()
+    private PlayerStats GetPlayerWhoWon()
     {
-        PlayerStats[] availablePlayers = FindObjectsOfType<PlayerStats>();
+        var availablePlayers = FindObjectsOfType<PlayerStats>();
 
-        foreach (PlayerStats playerToCheckIfAlive in availablePlayers)
-        {
-            if (!playerToCheckIfAlive.isPlayerDead)
-                return playerToCheckIfAlive;
-        }
-
-        return null;
+        return availablePlayers.FirstOrDefault(playerToCheckIfAlive => !playerToCheckIfAlive.isPlayerDead);
     }
 
-    PlayerStats GetPlayerWhoLost()
+    private PlayerStats GetPlayerWhoLost()
     {
-        PlayerStats[] availablePlayers = FindObjectsOfType<PlayerStats>();
+        var availablePlayers = FindObjectsOfType<PlayerStats>();
 
-        foreach (PlayerStats playerToCheckIfDead in availablePlayers)
-        {
-            if (playerToCheckIfDead.isPlayerDead)
-                return playerToCheckIfDead;
-        }
-
-        return null;
+        return availablePlayers.FirstOrDefault(playerToCheckIfDead => playerToCheckIfDead.isPlayerDead);
     }
 
-    void AwardPlayer(PlayerStats playerToAward, int coinsToAward)
+    private void AwardPlayer(PlayerStats playerToAward, int coinsToAward)
     {
         Economy.AddCoinsToPlayer(playerToAward.PlayerID, coinsToAward);
 
@@ -87,32 +77,30 @@ public class GameOverManager : MonoBehaviour
         FillUIPlayer1(coinsToAward);
     }
 
-    void FillUIPlayer0(int qtyCoinsEarned)
+    private void FillUIPlayer0(int qtyCoinsEarned)
     {
-        string textToSet = "+ " + qtyCoinsEarned;
+        var textToSet = "+ " + qtyCoinsEarned;
 
         UI_ManagerGameplay.Instance.SetPlayer0AwardText(textToSet);
     }
 
-    void FillUIPlayer1(int qtyCoinsEarned)
+    private void FillUIPlayer1(int qtyCoinsEarned)
     {
-        string textToSet = "+ " + qtyCoinsEarned;
+        var textToSet = "+ " + qtyCoinsEarned;
 
         UI_ManagerGameplay.Instance.SetPlayer1AwardText(textToSet);
     }
 
-    void CountVictory(PlayerStats playerWinner)
+    private void CountVictory(PlayerStats playerWinner)
     {
-        string winnerTextToSet = VictoryText();
+        var winnerTextToSet = VictoryText;
 
-        int newVictoryAmmout = PlayersDataManager.PlayerVictoryCount(playerWinner.PlayerID) + 1;
+        var newVictoryAmount = PlayersDataManager.PlayerVictoryCount(playerWinner.PlayerID) + 1;
 
-        PlayersDataManager.SetNewPlayerVictoryAmmout(playerWinner.PlayerID, newVictoryAmmout);
+        PlayersDataManager.SetNewPlayerVictoryAmmout(playerWinner.PlayerID, newVictoryAmount);
         UI_ManagerGameplay.Instance.SetGameOverTitleText(winnerTextToSet);
     }
 
-    string VictoryText() 
-    {
-        return Translate.GetTranslatedText("player") + " " + (playerWhoWon.PlayerID + 1) + " " + Translate.GetTranslatedText("won");
-    }
+    private string VictoryText => Translate.GetTranslatedText("player") + " " + (playerWhoWon.PlayerID + 1) + " " +
+                                  Translate.GetTranslatedText("won");
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using PlayerLogic;
 using PlayerLogic.Actions;
+using TranslationSystem.Base;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
         PrepareGame();
     }
 
-    void PrepareGame()
+    private void PrepareGame()
     {
         GameState.SetState(GameStates.WaitingForStart);
 
@@ -52,13 +53,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartSequence());
     }
 
-    IEnumerator StartSequence()
+    private IEnumerator StartSequence()
     {
         yield return waitABitToStart;
 
-        for (int countDown = 3; countDown >= 0; countDown--)
+        for (var countDown = 3; countDown >= 0; countDown--)
         {
-            string countDownValue = countDown + "!";
+            var countDownValue = countDown + "!";
 
             if (countDown == 0)
                 countDownValue = Translate.GetTranslatedText("go");
@@ -70,29 +71,26 @@ public class GameManager : MonoBehaviour
         InitializeGame();
     }
 
-    void InitializeGame()
+    private void InitializeGame()
     {
         GameState.SetState(GameStates.Playing);
         currentPlayer = 0;
     }
 
-    void GetTotalPlayersInGame()
+    private void GetTotalPlayersInGame()
     {
         totalPlayersQty = FindObjectsOfType<PlayerStats>().Length;
     }
 
-    public static bool isPlayersTurn(PlayerStats playerToCheck)
+    public static bool IsPlayersTurn(PlayerStats playerToCheck)
     {
         if (!GameState.isPlaying())
             return false;
 
-        if (playerToCheck.PlayerID == currentPlayer)
-            return true;
-
-        return false;
+        return playerToCheck.PlayerID == currentPlayer;
     }
 
-    void FinishGame()
+    private void FinishGame()
     {
         UI_ManagerGameplay.Instance.ToggleGamePlayScreen(false);
         UI_ManagerGameplay.Instance.ToggleGameOverScreen(true);
@@ -100,9 +98,9 @@ public class GameManager : MonoBehaviour
         GameState.SetState(GameStates.Finished);
     }
 
-    int GetNextPlayer()
+    private int GetNextPlayer()
     {
-        int nextPlayerID = currentPlayer;
+        var nextPlayerID = currentPlayer;
 
         nextPlayerID++;
 
@@ -112,7 +110,7 @@ public class GameManager : MonoBehaviour
         return nextPlayerID;
     }
 
-    void PlayerShot(PlayerStats playerWhoShot)
+    private void PlayerShot(PlayerStats playerWhoShot)
     {
         if (!GameState.isPlaying())
             return;
@@ -120,7 +118,7 @@ public class GameManager : MonoBehaviour
         currentPlayer = GetNextPlayer();
     }
 
-    void PlayerDied(PlayerStats playerWhoDied)
+    private void PlayerDied(PlayerStats playerWhoDied)
     {
         FinishGame();
     }

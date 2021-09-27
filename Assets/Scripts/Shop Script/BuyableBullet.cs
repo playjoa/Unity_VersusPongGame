@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TranslationSystem.Base;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class BuyableBullet : BuyableItem
@@ -18,7 +19,7 @@ public class BuyableBullet : BuyableItem
         InitializeItemInStore();
     }
 
-    void InitializeItemInStore() 
+    private void InitializeItemInStore() 
     {
         SetImageToItem(bulletToBuy.sprBullet);
         PrepareUI_ITem();
@@ -37,7 +38,7 @@ public class BuyableBullet : BuyableItem
         PrepareUI_ITem();
     }
 
-    public void PrepareUI_ITem()
+    private void PrepareUI_ITem()
     {
         if (ItemEquiped())
         {
@@ -53,33 +54,11 @@ public class BuyableBullet : BuyableItem
         SetUIForItemAvailableToPurchase();
     }
 
-    void SetUIForItemEquiped() 
-    {
-        backGroundItem.color = colorSelected;
-    }
-
-    void SetUIForItemOwned()
-    {
-        backGroundItem.color = colorHasItem;
-    }
-
-    void SetUIForItemAvailableToPurchase()
-    {
-        backGroundItem.color = colorNotSelected;
-    }
-
-    bool ItemEquiped()
-    {
-        if (PlayersDataManager.PlayerCurrentBulletLoaded(idPlayerBuyer) == ItemIndex)
-            return true;
-
-        return false;
-    }
-
-    public override bool HasItem()
-    {
-        return PlayersDataManager.PlayerHasBulletItem(idPlayerBuyer, ItemIndex);
-    }
+    private void SetUIForItemEquiped() => backGroundItem.color = colorSelected;
+    private void SetUIForItemOwned() => backGroundItem.color = colorHasItem;
+    private void SetUIForItemAvailableToPurchase() => backGroundItem.color = colorNotSelected;
+    private bool ItemEquiped() =>PlayersDataManager.PlayerCurrentBulletLoaded(idPlayerBuyer) == ItemIndex;
+    public override bool HasItem() =>PlayersDataManager.PlayerHasBulletItem(idPlayerBuyer, ItemIndex);
 
     public override void OnItemBought()
     {
@@ -89,31 +68,29 @@ public class BuyableBullet : BuyableItem
 
     public override string DescItem()
     {
-        string descItem = "";
+        var descItem = "";
 
         descItem += FormatDescriptionItem("damage", bulletToBuy.BaseBulletDamage.ToString());
         descItem += FormatDescriptionItem("speed", bulletToBuy.BulletMovement.BulletVelocity.ToString());
         descItem += FormatDescriptionItem("maxbounce", bulletToBuy.BulletMovement.BulletMaxBounces.ToString());
 
         return descItem;
-    } 
-
-    string FormatDescriptionItem(string idText, string valueToSet)
-    {
-        return " - " + Translate.GetTranslatedText(idText) + " " + valueToSet + " \n";
     }
 
-    void SelectItem()
+    private string FormatDescriptionItem(string idText, string valueToSet) =>
+        " - " + Translate.GetTranslatedText(idText) + " " + valueToSet + " \n";
+
+    private void SelectItem()
     {
         PlayersDataManager.SetNewPlayerCurrentBullet(idPlayerBuyer, ItemIndex);
         UpdateAllItens();
     }
 
-    void UpdateAllItens() 
+    private void UpdateAllItens() 
     {
-        BuyableBullet[] allBulletsForPurchase =  FindObjectsOfType<BuyableBullet>();
+        var allBulletsForPurchase =  FindObjectsOfType<BuyableBullet>();
 
-        foreach (BuyableBullet buyableBullet in allBulletsForPurchase)
+        foreach (var buyableBullet in allBulletsForPurchase)
             buyableBullet.PrepareUI_ITem();
     }
 }

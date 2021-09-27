@@ -23,7 +23,7 @@ namespace PlayerLogic.Actions
 
         private void Update()
         {
-            if (!GameManager.isPlayersTurn(playerStats))
+            if (!GameManager.IsPlayersTurn(playerStats))
             {
                 ToggleAim(false);
                 return;
